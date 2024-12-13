@@ -21,7 +21,7 @@ public class webTableTests {
         driver.get("https://demoqa.com/");
 
 //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
-        // Stating the Javascript Executor driver
+// Stating the Javascript Executor driver
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,400)");
 
