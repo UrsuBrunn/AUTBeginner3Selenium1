@@ -50,9 +50,28 @@ public class practiceFormTest {
         String userEmailValue = "FormUserEmailInput1@example.com";
         userEmailElement.sendKeys(userEmailValue);
 
-//      Not used yet
-//        WebElement genderRadioButtonElement = driver.findElement(By.id("gender-radio-1"));
-//        genderRadioButtonElement.click();
+        WebElement genderMaleRadioButtonElement = driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
+        WebElement genderFemaleRadioButtonElement = driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
+        WebElement genderOtherRadioButtonElement = driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
+
+        String gender = "Other";
+
+        if (gender.equals("Male")) {
+            genderMaleRadioButtonElement.click();
+        }
+        else if (gender.equals("Female")) {
+            genderFemaleRadioButtonElement.click();
+        }
+        else if (gender.equals("Other")) {
+            genderOtherRadioButtonElement.click();
+        }
+
+//        How do we handle the cases which is not matched by xpath? example : "Other123"
+//        else {
+//            System.out.println("Invalid gender");
+//        }
+//        break;
+
 
         WebElement phoneNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
         String phoneNumber = "0740123456";
