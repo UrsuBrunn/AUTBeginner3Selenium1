@@ -65,12 +65,11 @@ public class practiceFormTest {
         else if (gender.equals("Other")) {
             genderOtherRadioButtonElement.click();
         }
-
-//        How do we handle the cases which is not matched by xpath? example : "Other123"
-//        else {
-//            System.out.println("Invalid gender");
-//        }
-//        break;
+        else {
+//          Throw an exception - Credits to Claudia Timis
+            throw new IllegalArgumentException("Invalid gender: " + gender);
+             }
+//        driver.quit();
 
 
         WebElement phoneNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
