@@ -3,6 +3,7 @@ package tests;
 import java.io.File;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -56,13 +57,13 @@ public class practiceFormTest {
 
         String gender = "Other";
 
-        if (gender.equals("Male")) {
+        if (genderMaleRadioButtonElement.getText().equals(gender)) {
             genderMaleRadioButtonElement.click();
         }
-        else if (gender.equals("Female")) {
+        else if (genderFemaleRadioButtonElement.getText().equals(gender)) {
             genderFemaleRadioButtonElement.click();
         }
-        else if (gender.equals("Other")) {
+        else if (genderOtherRadioButtonElement.getText().equals(gender)) {
             genderOtherRadioButtonElement.click();
         }
         else {
@@ -71,7 +72,6 @@ public class practiceFormTest {
              }
 //        driver.quit();
 
-
         WebElement phoneNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
         String phoneNumber = "0740123456";
         phoneNumberElement.sendKeys(phoneNumber);
@@ -79,6 +79,21 @@ public class practiceFormTest {
         WebElement uploadPictureElement = driver.findElement(By.id("uploadPicture"));
         File file = new File("src/test/resources/dwcOly5.png");
         uploadPictureElement.sendKeys(file.getAbsolutePath());
+
+        WebElement subjectsElement = driver.findElement(By.id("subjectsInput"));
+        String subjectsText = "Social Studies";
+        subjectsElement.sendKeys(subjectsText);
+        subjectsElement.sendKeys(Keys.ENTER);
+
+        WebElement stateElement = driver.findElement(By.id("react-select-3-input"));
+        js.executeScript("arguments[0].click()",stateElement);
+        stateElement.sendKeys("NCR");
+        stateElement.sendKeys(Keys.ENTER);
+
+        WebElement cityElement = driver.findElement(By.id("react-select-4-input"));
+        js.executeScript("arguments[0].click()",cityElement);
+        cityElement.sendKeys("Delhi");
+        cityElement.sendKeys(Keys.ENTER);
 
     }
 }
