@@ -1,12 +1,14 @@
 package tests;
 
 import java.io.File;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class practiceFormTest {
@@ -94,6 +96,32 @@ public class practiceFormTest {
         js.executeScript("arguments[0].click()",cityElement);
         cityElement.sendKeys("Delhi");
         cityElement.sendKeys(Keys.ENTER);
+
+        WebElement submitElement = driver.findElement(By.id("submit"));
+        js.executeScript("arguments[0].click()",submitElement);
+
+        List<WebElement> SubmittedFormElements = driver.findElements(By.xpath("//div[contains(@class, 'modal-body')]/div[@class='table-responsive']/table/tbody/tr/td"));
+        Integer actualSubmittedFormSize = SubmittedFormElements.size();
+
+        Assert.assertEquals(actualSubmittedFormSize, 20);
+        String birthDate = "10 February,2025";
+        String pictureExpectedName = "DwcOly5";
+        String stateExpected = "NCR";
+        String cityExpected = "Delhi";
+
+        Assert.assertTrue(SubmittedFormElements.get(1).getText().contains(firstNameValue));
+        Assert.assertTrue(SubmittedFormElements.get(1).getText().contains(lastNameValue));
+        Assert.assertTrue(SubmittedFormElements.get(3).getText().contains(userEmailValue));
+        Assert.assertTrue(SubmittedFormElements.get(5).getText().contains(gender));
+        Assert.assertTrue(SubmittedFormElements.get(7).getText().contains(phoneNumber));
+        Assert.assertTrue(SubmittedFormElements.get(9).getText().contains(birthDate));
+        Assert.assertTrue(SubmittedFormElements.get(11).getText().contains(subjectsText));
+        System.out.println(SubmittedFormElements.get(15).getText());
+//        The match on picture expected name dos not work as expected
+//        Assert.assertTrue(SubmittedFormElements.get(15).getText().contains(pictureExpectedName));
+        Assert.assertTrue(SubmittedFormElements.get(19).getText().contains(stateExpected));
+        Assert.assertTrue(SubmittedFormElements.get(19).getText().contains(cityExpected));
+
 
     }
 }
