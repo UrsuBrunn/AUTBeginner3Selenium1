@@ -104,8 +104,8 @@ public class practiceFormTest {
         Integer actualSubmittedFormSize = SubmittedFormElements.size();
 
         Assert.assertEquals(actualSubmittedFormSize, 20);
-        String birthDate = "10 February,2025";
-        String pictureExpectedName = "DwcOly5";
+        String birthDate = "27 February,2025";
+        String pictureExpectedName = "dwcOly5.png";
         String stateExpected = "NCR";
         String cityExpected = "Delhi";
 
@@ -118,7 +118,7 @@ public class practiceFormTest {
         Assert.assertTrue(SubmittedFormElements.get(11).getText().contains(subjectsText));
         System.out.println(SubmittedFormElements.get(15).getText());
 //        The match on picture expected name dos not work as expected
-//        Assert.assertTrue(SubmittedFormElements.get(15).getText().contains(pictureExpectedName));
+        Assert.assertTrue(SubmittedFormElements.get(15).getText().contains(pictureExpectedName));
         Assert.assertTrue(SubmittedFormElements.get(19).getText().contains(stateExpected));
         Assert.assertTrue(SubmittedFormElements.get(19).getText().contains(cityExpected));
 
