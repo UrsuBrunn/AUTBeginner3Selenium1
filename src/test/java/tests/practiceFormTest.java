@@ -38,21 +38,10 @@ public class practiceFormTest {
 
         //  declaram lista elemente si alegem forms
         WebElement formsField = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        WebElement elementsField = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        WebElement alertsFramesWindowsField = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        WebElement widgetsField = driver.findElement(By.xpath("//h5[text()='Widgets']"));
-        WebElement interactionsField = driver.findElement(By.xpath("//h5[text()='Interactions']"));
-        WebElement bookStoreField = driver.findElement(By.xpath("//h5[text()='Book Store Application']"));
 
         List<WebElement> mainMenuElement = new ArrayList<WebElement>();
         mainMenuElement.add(formsField);
-        mainMenuElement.add(elementsField);
-        mainMenuElement.add(alertsFramesWindowsField);
-        mainMenuElement.add(widgetsField);
-        mainMenuElement.add(interactionsField);
-        mainMenuElement.add(bookStoreField);
 
-        //elementsMethod.clickElementsFromListByText(mainMenuElement,"Forms"); -> Intreaba-l pe Nicolae de ce nu merge asta
         elementsMethod.clickElements(formsField);
 
         WebElement formsOptionElement = driver.findElement(By.xpath("//span[text()='Practice Form']"));
@@ -88,18 +77,16 @@ public class practiceFormTest {
         elementsMethod.uploadPicture(uploadPictureElement);
 
         WebElement subjectsElement = driver.findElement(By.id("subjectsInput"));
-        elementsMethod.sendKeys(subjectsElement, "Social Studies");
-        //elementsMethod.sendKeys(Keys.ENTER);
+        elementsMethod.sendKeysEnter(subjectsElement, "Social Studies");
 
         WebElement stateElement = driver.findElement(By.id("react-select-3-input"));
         js.executeScript("arguments[0].click()",stateElement);
-        stateElement.sendKeys("NCR");
-        stateElement.sendKeys(Keys.ENTER);
+        elementsMethod.sendKeysEnter(stateElement, "NCR");
+
 
         WebElement cityElement = driver.findElement(By.id("react-select-4-input"));
         js.executeScript("arguments[0].click()",cityElement);
-        cityElement.sendKeys("Delhi");
-        cityElement.sendKeys(Keys.ENTER);
+        elementsMethod.sendKeysEnter(cityElement, "Delhi");
 
         WebElement submitElement = driver.findElement(By.id("submit"));
         js.executeScript("arguments[0].click()",submitElement);
@@ -108,23 +95,23 @@ public class practiceFormTest {
         Integer actualSubmittedFormSize = SubmittedFormElements.size();
 
         Assert.assertEquals(actualSubmittedFormSize, 20);
-        String birthDate = "27 February,2025";
+        String birthDate = "22 April,2025";
         String pictureExpectedName = "dwcOly5.png";
         String stateExpected = "NCR";
         String cityExpected = "Delhi";
 
-//        Assert.assertTrue(SubmittedFormElements.get(1).getText().contains(firstNameValue));
-//        Assert.assertTrue(SubmittedFormElements.get(1).getText().contains(lastNameValue));
-//        Assert.assertTrue(SubmittedFormElements.get(3).getText().contains(userEmailValue));
-//        Assert.assertTrue(SubmittedFormElements.get(5).getText().contains(gender));
-//        Assert.assertTrue(SubmittedFormElements.get(7).getText().contains(phoneNumber));
-//        Assert.assertTrue(SubmittedFormElements.get(9).getText().contains(birthDate));
-//        Assert.assertTrue(SubmittedFormElements.get(11).getText().contains(subjectsText));
-//        System.out.println(SubmittedFormElements.get(15).getText());
+        Assert.assertTrue(SubmittedFormElements.get(1).getText().contains("FormFirstNameInput1"));
+        Assert.assertTrue(SubmittedFormElements.get(1).getText().contains("FormLastNameInput1"));
+        Assert.assertTrue(SubmittedFormElements.get(3).getText().contains("FormUserEmailInput1@example.com"));
+        Assert.assertTrue(SubmittedFormElements.get(5).getText().contains("Female"));
+        Assert.assertTrue(SubmittedFormElements.get(7).getText().contains("0740123456"));
+        Assert.assertTrue(SubmittedFormElements.get(9).getText().contains("22 April,2025"));
+        Assert.assertTrue(SubmittedFormElements.get(11).getText().contains("Social Studies"));
+        System.out.println(SubmittedFormElements.get(15).getText());
 ////        The match on picture expected name dos not work as expected
-//        Assert.assertTrue(SubmittedFormElements.get(15).getText().contains(pictureExpectedName));
-//        Assert.assertTrue(SubmittedFormElements.get(19).getText().contains(stateExpected));
-//        Assert.assertTrue(SubmittedFormElements.get(19).getText().contains(cityExpected));
+        Assert.assertTrue(SubmittedFormElements.get(15).getText().contains("dwcOly5.png"));
+        Assert.assertTrue(SubmittedFormElements.get(19).getText().contains("NCR"));
+        Assert.assertTrue(SubmittedFormElements.get(19).getText().contains("Delhi"));
 
 
     }
