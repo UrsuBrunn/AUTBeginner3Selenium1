@@ -9,10 +9,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import HelperMethods.elementsMethod;
+import HelperMethods.framesMethod;
+import HelperMethods.windowsMethods;
+
 
 public class browserWindowTab {
 
     public WebDriver driver;
+    public elementsMethod elements;
+    public framesMethod frames;
+    public windowsMethods windows;
 
     @Test
     public void newBrowserTest() {
@@ -21,6 +28,9 @@ public class browserWindowTab {
 
         //  Facem browserul in modul maximize
         driver.manage().window().maximize();
+        elements = new elementsMethod(driver);
+        frames = new framesMethod(driver);
+        windows = new windowsMethods(driver);
 
         //  Accesam o pagina web
         driver.get("https://demoqa.com/");
@@ -35,42 +45,29 @@ public class browserWindowTab {
 
         //  declaram un element
         WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertFrameWindowElement.click();
+        elements.clickElements(alertFrameWindowElement);
 
         WebElement browserElement = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
-        browserElement.click();
+        elements.clickElements(browserElement);
 
         WebElement newTabElement = driver.findElement(By.id("tabButton"));
-        newTabElement.click();
+        elements.clickElements(newTabElement);
 
-        List<String> tabList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabList.get(1));
+        windows.switchToSecondTab();
 
         WebElement sampleHeadingElement = driver.findElement(By.id("sampleHeading"));
         System.out.println("Textul din noul tab este: " + sampleHeadingElement.getText());
 
-        driver.close();
-        driver.switchTo().window(tabList.get(0));
+        windows.switchToMainTab();
 
         WebElement newWindowElement = driver.findElement(By.id("windowButton"));
-        newWindowElement.click();
+        elements.clickElements(newWindowElement);
 
-        List<String> windowList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowList.get(1));
+        windows.switchToSecondTab();
 
         WebElement sampleHeadingElement2 = driver.findElement(By.id("sampleHeading"));
         System.out.println("Textul din noul window este: " + sampleHeadingElement2.getText());
-        driver.close();
-        driver.switchTo().window(windowList.get(0));
 
-        //Womework al treilea button de window - Solution still not working
-//        WebElement messageWindowElement = driver.findElement(By.id("messageWindowButton"));
-//        messageWindowElement.click();
-//
-//        List<String> windowMsgList = new ArrayList<>(driver.getWindowHandles());
-//        driver.switchTo().window(windowMsgList.get(1));
-//
-//        WebElement newWindowMsgElement = driver.findElement(By.xpath("//body[text()='Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.']"));
-//        System.out.println("Textul din noul window este: " + newWindowMsgElement.getText());
+        windows.switchToMainTab();
     }
 }
