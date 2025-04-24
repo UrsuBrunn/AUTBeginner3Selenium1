@@ -1,10 +1,7 @@
 package tests;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +9,9 @@ import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
 import HelperMethods.windowsMethods;
+import HelperMethods.JavascriptHelpers;
+import pages.HomePage;
+import pages.CommonPage;
 
 
 public class browserWindowTab {
@@ -20,6 +20,9 @@ public class browserWindowTab {
     public elementsMethod elements;
     public framesMethod frames;
     public windowsMethods windows;
+    public HomePage homePage;
+    public JavascriptHelpers jsHelper;
+    public CommonPage commonPage;
 
     @Test
     public void newBrowserTest() {
@@ -31,6 +34,9 @@ public class browserWindowTab {
         elements = new elementsMethod(driver);
         frames = new framesMethod(driver);
         windows = new windowsMethods(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
+        jsHelper = new JavascriptHelpers(driver);
 
         //  Accesam o pagina web
         driver.get("https://demoqa.com/");
@@ -40,15 +46,12 @@ public class browserWindowTab {
 
         //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
         // Stating the Javascript Executor driver
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)");
+       //  declaram un element
 
-        //  declaram un element
-        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elements.clickElements(alertFrameWindowElement);
+        jsHelper.scrollDown(400);
 
-        WebElement browserElement = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
-        elements.clickElements(browserElement);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        commonPage.goToDesiredSubMenu("Browser Windows");
 
         WebElement newTabElement = driver.findElement(By.id("tabButton"));
         elements.clickElements(newTabElement);

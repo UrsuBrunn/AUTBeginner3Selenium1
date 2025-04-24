@@ -1,6 +1,5 @@
 package tests;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -8,12 +7,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
 import pages.HomePage;
+import pages.CommonPage;
 
 public class practiceFormTest {
 
@@ -21,6 +20,7 @@ public class practiceFormTest {
     public elementsMethod elementsMethod;
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
+    public CommonPage commonPage;
 
 
     @Test
@@ -33,6 +33,7 @@ public class practiceFormTest {
         elementsMethod = new elementsMethod(driver);
         homePage = new HomePage(driver);
         jsHelper = new JavascriptHelpers(driver);
+        commonPage = new CommonPage(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         //  Accesam o pagina web
@@ -43,9 +44,7 @@ public class practiceFormTest {
 
         //List<WebElement> elements = driver.findElements(By.xpath("//h5"));
         homePage.goToDesiredMenu("Forms");
-
-        List <WebElement> formsOptionElement = driver.findElements(By.xpath("//span[@class='text']"));
-        elementsMethod.selectElementFromListByText(formsOptionElement,"Practice Form");
+        commonPage.goToDesiredSubMenu("Practice Form");
 
         // Stating the Javascript Executor driver
         jsHelper.scrollDown(400);
@@ -105,7 +104,6 @@ public class practiceFormTest {
         Assert.assertTrue(SubmittedFormElements.get(9).getText().contains("April,2025"));
         Assert.assertTrue(SubmittedFormElements.get(11).getText().contains("Social Studies"));
         System.out.println(SubmittedFormElements.get(15).getText());
-////        The match on picture expected name dos not work as expected
         Assert.assertTrue(SubmittedFormElements.get(15).getText().contains("dwcOly5.png"));
         Assert.assertTrue(SubmittedFormElements.get(19).getText().contains("NCR"));
         Assert.assertTrue(SubmittedFormElements.get(19).getText().contains("Delhi"));

@@ -1,10 +1,7 @@
 package tests;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,12 +9,18 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
+import HelperMethods.JavascriptHelpers;
+import pages.HomePage;
+import pages.CommonPage;
 
 public class framesTest {
 
     public WebDriver driver;
     public elementsMethod elementsMethod;
     public framesMethod framesMethod;
+    public HomePage homePage;
+    public JavascriptHelpers jsHelper;
+    public CommonPage commonPage;
 
     @Test
     public void newFramesTest() {
@@ -28,6 +31,9 @@ public class framesTest {
         driver.manage().window().maximize();
         elementsMethod = new elementsMethod(driver);
         framesMethod = new framesMethod(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
+        jsHelper = new JavascriptHelpers(driver);
 
         //  Accesam o pagina web
         driver.get("https://demoqa.com/");
@@ -37,19 +43,10 @@ public class framesTest {
 
         //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
         // Stating the Javascript Executor driver
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)");
+        jsHelper.scrollDown(400);
 
-        //  declaram lista de elemente si alegem Frames
-        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-
-        List<WebElement> mainMenuElement = new ArrayList<WebElement>();
-        mainMenuElement.add(alertFrameWindowElement);
-
-        elementsMethod.clickElements(alertFrameWindowElement);
-
-        WebElement frameElement = driver.findElement(By.xpath("//span[text()='Frames']"));
-        elementsMethod.clickElements(frameElement);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        commonPage.goToDesiredSubMenu("Frames");
 
         WebElement bigFrameElement = driver.findElement(By.id("frame1"));
         framesMethod.switchTo(bigFrameElement);
@@ -64,7 +61,7 @@ public class framesTest {
         WebElement smallFrameElement = driver.findElement(By.id("frame2"));
         framesMethod.switchTo(smallFrameElement);
 
-        js.executeScript("window.scrollBy(200,400)");
+        jsHelper.scroll(200,400);
 
         WebElement sampleHeadingSmallFrameElement = driver.findElement(By.id("sampleHeading"));
         System.out.println("Textul din noul window este: " + sampleHeadingSmallFrameElement.getText());
