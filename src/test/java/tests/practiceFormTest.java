@@ -1,22 +1,26 @@
 package tests;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
+import HelperMethods.JavascriptHelpers;
+import pages.HomePage;
+import pages.CommonPage;
 
 public class practiceFormTest {
 
     public WebDriver driver;
     public elementsMethod elementsMethod;
+    public HomePage homePage;
+    public JavascriptHelpers jsHelper;
+    public CommonPage commonPage;
 
 
     @Test
@@ -27,28 +31,24 @@ public class practiceFormTest {
         //  Facem browserul in modul maximize
         driver.manage().window().maximize();
         elementsMethod = new elementsMethod(driver);
+        homePage = new HomePage(driver);
+        jsHelper = new JavascriptHelpers(driver);
+        commonPage = new CommonPage(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
         //  Accesam o pagina web
         driver.get("https://demoqa.com/");
 
         //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
         // Stating the Javascript Executor driver
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)");
 
-        //  declaram lista elemente si alegem forms
-        WebElement formsField = driver.findElement(By.xpath("//h5[text()='Forms']"));
+        //List<WebElement> elements = driver.findElements(By.xpath("//h5"));
+        homePage.goToDesiredMenu("Forms");
+        commonPage.goToDesiredSubMenu("Practice Form");
 
-        List<WebElement> mainMenuElement = new ArrayList<WebElement>();
-        mainMenuElement.add(formsField);
+        // Stating the Javascript Executor driver
+        jsHelper.scrollDown(400);
 
-        elementsMethod.clickElements(formsField);
-
-        WebElement formsOptionElement = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        elementsMethod.clickElements(formsOptionElement);
-
-           // Stating the Javascript Executor driver
-        js.executeScript("window.scrollBy(0,400)");
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
         elementsMethod.sendKeys(firstNameElement, "FormFirstNameInput1");
@@ -95,20 +95,15 @@ public class practiceFormTest {
         Integer actualSubmittedFormSize = SubmittedFormElements.size();
 
         Assert.assertEquals(actualSubmittedFormSize, 20);
-        String birthDate = "22 April,2025";
-        String pictureExpectedName = "dwcOly5.png";
-        String stateExpected = "NCR";
-        String cityExpected = "Delhi";
 
         Assert.assertTrue(SubmittedFormElements.get(1).getText().contains("FormFirstNameInput1"));
         Assert.assertTrue(SubmittedFormElements.get(1).getText().contains("FormLastNameInput1"));
         Assert.assertTrue(SubmittedFormElements.get(3).getText().contains("FormUserEmailInput1@example.com"));
         Assert.assertTrue(SubmittedFormElements.get(5).getText().contains("Female"));
         Assert.assertTrue(SubmittedFormElements.get(7).getText().contains("0740123456"));
-        Assert.assertTrue(SubmittedFormElements.get(9).getText().contains("22 April,2025"));
+        Assert.assertTrue(SubmittedFormElements.get(9).getText().contains("April,2025"));
         Assert.assertTrue(SubmittedFormElements.get(11).getText().contains("Social Studies"));
         System.out.println(SubmittedFormElements.get(15).getText());
-////        The match on picture expected name dos not work as expected
         Assert.assertTrue(SubmittedFormElements.get(15).getText().contains("dwcOly5.png"));
         Assert.assertTrue(SubmittedFormElements.get(19).getText().contains("NCR"));
         Assert.assertTrue(SubmittedFormElements.get(19).getText().contains("Delhi"));

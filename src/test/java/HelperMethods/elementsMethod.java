@@ -5,7 +5,6 @@ import java.util.List;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class elementsMethod {
 
@@ -37,15 +36,16 @@ public class elementsMethod {
         for(int i = 0; i<elementsList.size(); i++){
             if(elementsList.get(i).getText().equals(value)){
                 clickElements(elementsList.get(i));
+                break;
             }
             //else {
-            ////          Throw an exception - Credits to Claudia Timis
+            //          Throw an exception - Credits to Claudia Timis
             //throw new IllegalArgumentException("Invalid gender: " + value);
             //}
-            ////        driver.quit();
-
+            //       driver.quit();
         }
     }
+
 
 
 
