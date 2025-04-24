@@ -1,52 +1,42 @@
 package tests;
 
-import java.util.List;
-import javax.swing.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
+import HelperMethods.JavascriptHelpers;
+import pages.HomePage;
+import pages.CommonPage;
+import HelperMethods.sortingMethod;
 
 public class practiceRecursivitate {
 
     public WebDriver driver;
+    public HomePage homePage;
+    public JavascriptHelpers jsHelper;
+    public CommonPage commonPage;
+    public sortingMethod sortingMethod;
 
     @Test
     public void parcurgereLista() {
         //  Deschidem un browser de chrome
         driver = new ChromeDriver();
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
+        jsHelper = new JavascriptHelpers(driver);
+        sortingMethod = new sortingMethod(driver);
 
         //  Facem browserul in modul maximize
         driver.manage().window().maximize();
 
-        //  Accesam o pagina web
-        driver.get("https://demoqa.com/sortable");
+        //  Accesam pagina web de sortable
+        driver.get("https://demoqa.com");
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)");
+        jsHelper.scrollDown(400);
 
-        Actions actions = new Actions(driver);
+        homePage.goToDesiredMenu("Interactions");
+        commonPage.goToDesiredSubMenu("Sortable");
 
-        List<WebElement> list = driver.findElements(By.xpath("//div[@id='demo-tabpane-list']//div[@class='list-group-item list-group-item-action']"));
-        for (int i = 0; i < list.size()-1; i++) {
-            WebElement el = list.get(i);
-            WebElement el2 = list.get(i++);
+        sortingMethod.sortTable();
 
-            System.out.println("Numarul elementului e: " + el.getText());
-            actions.clickAndHold(el)
-                    .moveToElement(el2)
-                    .release()
-                    .build()
-                    .perform();
-        }
-        try {
-            Thread.sleep(1000);
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
-}
