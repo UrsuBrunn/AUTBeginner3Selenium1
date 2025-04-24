@@ -5,7 +5,6 @@ import java.util.List;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class elementsMethod {
 
@@ -40,10 +39,10 @@ public class elementsMethod {
                 break;
             }
             //else {
-            ////          Throw an exception - Credits to Claudia Timis
+            //          Throw an exception - Credits to Claudia Timis
             //throw new IllegalArgumentException("Invalid gender: " + value);
             //}
-            ////        driver.quit();
+            //       driver.quit();
         }
     }
 
