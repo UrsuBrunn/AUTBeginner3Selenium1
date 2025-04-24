@@ -37,15 +37,16 @@ public class elementsMethod {
         for(int i = 0; i<elementsList.size(); i++){
             if(elementsList.get(i).getText().equals(value)){
                 clickElements(elementsList.get(i));
+                break;
             }
             //else {
             ////          Throw an exception - Credits to Claudia Timis
             //throw new IllegalArgumentException("Invalid gender: " + value);
             //}
             ////        driver.quit();
-
         }
     }
+
 
 
 
