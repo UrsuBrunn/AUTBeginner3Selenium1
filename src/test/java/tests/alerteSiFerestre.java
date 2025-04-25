@@ -13,6 +13,7 @@ import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
 import pages.HomePage;
 import pages.CommonPage;
+import pages.alerteFerestrePage;
 
 public class alerteSiFerestre {
 
@@ -22,6 +23,7 @@ public class alerteSiFerestre {
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
     public CommonPage commonPage;
+    public alerteFerestrePage alerteFerestrePage;
 
     @Test
     public void newAlertTest() {
@@ -30,6 +32,9 @@ public class alerteSiFerestre {
         homePage = new HomePage(driver);
         commonPage = new CommonPage(driver);
         jsHelper = new JavascriptHelpers(driver);
+        elementsMethod = new elementsMethod(driver);
+        alertsMethod = new alertsMethod(driver);
+        alerteFerestrePage = new alerteFerestrePage(driver);
 
         //  Facem browserul in modul maximize
         driver.manage().window().maximize();
@@ -48,35 +53,9 @@ public class alerteSiFerestre {
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
         commonPage.goToDesiredSubMenu("Alerts");
 
-        elementsMethod = new elementsMethod(driver);
-        alertsMethod = new alertsMethod(driver);
-
-        WebElement alertOkElement = driver.findElement(By.id("alertButton"));
-        elementsMethod.clickElements(alertOkElement);
-
-        alertsMethod.interactWithAlertOk();
-
-        WebElement alertDelayElement = driver.findElement(By.id("timerAlertButton"));
-        elementsMethod.clickElements(alertDelayElement);
-
-        alertsMethod.interactWithDelayAlert();
-
-        WebElement alertMessageElement = driver.findElement(By.id("confirmButton"));
-        elementsMethod.clickElements(alertMessageElement);
-
-        alertsMethod.interactWithAlertDismiss();
-
-        //Homework - check expected text for Cancel action
-        WebElement confirmResultElement = driver.findElement(By.id("confirmResult"));
-        Assert.assertTrue(confirmResultElement.getText().contains("You selected Cancel"));
-
-        WebElement alertPromptElement = driver.findElement(By.id("promtButton"));
-        elementsMethod.clickElements(alertPromptElement);
-
-        alertsMethod.interactWithInputAlerts("Paul Gligan");
-
-        //Homework, verifica numele scris corect pe Ok action
-        WebElement promptResultElement = driver.findElement(By.id("promptResult"));
-        Assert.assertTrue(promptResultElement.getText().contains("You entered " + "Paul Gligan"));
+        alerteFerestrePage.showAlertOk();
+        alerteFerestrePage.showAlertDelayed();
+        alerteFerestrePage.alertMessageDismiss();
+        alerteFerestrePage.alertPrompt();
     }
 }
