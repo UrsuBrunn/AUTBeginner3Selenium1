@@ -12,6 +12,7 @@ import HelperMethods.windowsMethods;
 import HelperMethods.JavascriptHelpers;
 import pages.HomePage;
 import pages.CommonPage;
+import pages.browserWindowPage;
 
 
 public class browserWindowTab {
@@ -23,6 +24,7 @@ public class browserWindowTab {
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
     public CommonPage commonPage;
+    public browserWindowPage browserWindowPage;
 
     @Test
     public void newBrowserTest() {
@@ -36,6 +38,8 @@ public class browserWindowTab {
         windows = new windowsMethods(driver);
         homePage = new HomePage(driver);
         commonPage = new CommonPage(driver);
+        browserWindowPage = new browserWindowPage(driver);
+
         jsHelper = new JavascriptHelpers(driver);
 
         //  Accesam o pagina web
@@ -53,20 +57,11 @@ public class browserWindowTab {
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
         commonPage.goToDesiredSubMenu("Browser Windows");
 
-        WebElement newTabElement = driver.findElement(By.id("tabButton"));
-        elements.clickElements(newTabElement);
-
-        windows.switchToSecondTab();
-
-        WebElement sampleHeadingElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println("Textul din noul tab este: " + sampleHeadingElement.getText());
+        browserWindowPage.clickNewTab();
 
         windows.switchToMainTab();
 
-        WebElement newWindowElement = driver.findElement(By.id("windowButton"));
-        elements.clickElements(newWindowElement);
-
-        windows.switchToSecondTab();
+        browserWindowPage.clickWindowedTab();
 
         WebElement sampleHeadingElement2 = driver.findElement(By.id("sampleHeading"));
         System.out.println("Textul din noul window este: " + sampleHeadingElement2.getText());

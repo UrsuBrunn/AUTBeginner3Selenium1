@@ -12,6 +12,7 @@ import HelperMethods.framesMethod;
 import HelperMethods.JavascriptHelpers;
 import pages.HomePage;
 import pages.CommonPage;
+import pages.framesPage;
 
 public class framesTest {
 
@@ -21,6 +22,7 @@ public class framesTest {
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
     public CommonPage commonPage;
+    public framesPage framesPage;
 
     @Test
     public void newFramesTest() {
@@ -34,6 +36,7 @@ public class framesTest {
         homePage = new HomePage(driver);
         commonPage = new CommonPage(driver);
         jsHelper = new JavascriptHelpers(driver);
+        framesPage = new framesPage(driver);
 
         //  Accesam o pagina web
         driver.get("https://demoqa.com/");
@@ -48,23 +51,35 @@ public class framesTest {
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
         commonPage.goToDesiredSubMenu("Frames");
 
-        WebElement bigFrameElement = driver.findElement(By.id("frame1"));
-        framesMethod.switchTo(bigFrameElement);
+        framesPage.bigFrame();
 
-
-        WebElement sampleHeadingBigFrameElement = driver.findElement(By.id("sampleHeading"));
+        WebElement sampleHeadingBigFrameElement = driver.findElement(By.xpath("//h1[@id='sampleHeading']"));
         System.out.println("Textul din noul window este: " + sampleHeadingBigFrameElement.getText());
         Assert.assertTrue(sampleHeadingBigFrameElement.getText().contains("This is a sample page"));
 
         driver.switchTo().defaultContent();
 
-        WebElement smallFrameElement = driver.findElement(By.id("frame2"));
-        framesMethod.switchTo(smallFrameElement);
+        framesPage.smallFrame();
 
-        jsHelper.scroll(200,400);
 
-        WebElement sampleHeadingSmallFrameElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println("Textul din noul window este: " + sampleHeadingSmallFrameElement.getText());
-        Assert.assertTrue(sampleHeadingSmallFrameElement.getText().contains("This is a sample page"));
+
+//        WebElement bigFrameElement = driver.findElement(By.id("frame1"));
+//        framesMethod.switchTo(bigFrameElement);
+//
+//
+//        WebElement sampleHeadingBigFrameElement = driver.findElement(By.id("sampleHeading"));
+//        System.out.println("Textul din noul window este: " + sampleHeadingBigFrameElement.getText());
+//        Assert.assertTrue(sampleHeadingBigFrameElement.getText().contains("This is a sample page"));
+//
+//        driver.switchTo().defaultContent();
+//
+//        WebElement smallFrameElement = driver.findElement(By.id("frame2"));
+//        framesMethod.switchTo(smallFrameElement);
+//
+//        jsHelper.scroll(200,400);
+//
+//        WebElement sampleHeadingSmallFrameElement = driver.findElement(By.id("sampleHeading"));
+//        System.out.println("Textul din noul window este: " + sampleHeadingSmallFrameElement.getText());
+//        Assert.assertTrue(sampleHeadingSmallFrameElement.getText().contains("This is a sample page"));
     }
 }

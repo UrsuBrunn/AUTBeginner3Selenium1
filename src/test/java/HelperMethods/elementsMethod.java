@@ -22,7 +22,6 @@ public class elementsMethod {
     }
 
     public void clickElements(WebElement element) {
-
         element.click();
     }
 

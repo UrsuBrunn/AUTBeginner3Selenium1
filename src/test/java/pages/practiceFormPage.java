@@ -50,7 +50,7 @@ public class practiceFormPage {
 
 
     //For single subject entered we used xpath so that we could use Actions
-//    @FindBy(xpath = "//div[@id='subjectsContainer']")
+    //@FindBy(xpath = "//div[@id='subjectsContainer']")
     //For multiple subject entered we used ID so that we cand send values directly without Actions
     @FindBy(id = "subjectsInput")
     WebElement subjectsInputElement;

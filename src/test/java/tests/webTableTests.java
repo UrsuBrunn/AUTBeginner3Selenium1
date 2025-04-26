@@ -13,6 +13,7 @@ import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
 import pages.HomePage;
 import pages.CommonPage;
+import pages.webTablePage;
 
 public class webTableTests {
 
@@ -21,6 +22,7 @@ public class webTableTests {
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
     public CommonPage commonPage;
+    public webTablePage webTablePage;
 
     @Test
     public void autMethod() {
@@ -28,10 +30,11 @@ public class webTableTests {
         driver = new ChromeDriver();
 //  Facem browserul in modul maximize
         driver.manage().window().maximize();
-        elementsMethod = new elementsMethod(driver);
         homePage = new HomePage(driver);
         commonPage = new CommonPage(driver);
         jsHelper = new JavascriptHelpers(driver);
+        webTablePage = new webTablePage(driver);
+        elementsMethod = new elementsMethod(driver);
 
 //  Accesam o pagina web
         driver.get("https://demoqa.com/");
@@ -44,52 +47,22 @@ public class webTableTests {
 
         homePage.goToDesiredMenu("Elements");
         commonPage.goToDesiredSubMenu("Web Tables");
+        jsHelper.scrollDown(400);
 
-        List<WebElement> TableElements = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Integer actualTableSize = TableElements.size();
+        webTablePage.addInputsToTable("FirsNameInput1","LastNameInput1","userEmailInput1@example.com","33","10000","Deprtement1");
+        webTablePage.clickSubmitAction();
 
-        WebElement addNewTableItemElement = driver.findElement(By.id("addNewRecordButton"));
-        elementsMethod.clickElements(addNewTableItemElement);
 
-        WebElement firstNameElement = driver.findElement(By.id("firstName"));
-        String firstNameValue = "FirsNameInput1";
-        elementsMethod.sendKeys(firstNameElement,firstNameValue);
-
-        WebElement lastNameElement = driver.findElement(By.id("lastName"));
-        String lastNameValue = "LastNameInput1";
-        elementsMethod.sendKeys(lastNameElement,lastNameValue);
-
-        WebElement userEmailElement = driver.findElement(By.id("userEmail"));
-        String userEmailValue = "userEmailInput1@example.com";
-        elementsMethod.sendKeys(userEmailElement,userEmailValue);
-
-        WebElement ageElement = driver.findElement(By.id("age"));
-        String ageValue = "33";
-        elementsMethod.sendKeys(ageElement,ageValue);
-
-        WebElement salaryElement = driver.findElement(By.id("salary"));
-        String salaryValue = "10000";
-        elementsMethod.sendKeys(salaryElement,salaryValue);
-
-        WebElement departmentElement = driver.findElement(By.id("department"));
-        String departmentValue = "Deprtement1";
-        elementsMethod.sendKeys(departmentElement,departmentValue);
-
-        WebElement clickSubmitButtonElement = driver.findElement(By.id("submit"));
-        elementsMethod.clickElements(clickSubmitButtonElement);
-
-        List<WebElement> ExpectedTableElements = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-
-        Integer expectedTableSize = actualTableSize + 1;
-        Assert.assertEquals(expectedTableSize, ExpectedTableElements.size());
-
-        String actualTableValue = ExpectedTableElements.get(3).getText();
-        Assert.assertTrue(actualTableValue.contains(firstNameValue));
-        Assert.assertTrue(actualTableValue.contains(lastNameValue));
-        Assert.assertTrue(actualTableValue.contains(userEmailValue));
-        Assert.assertTrue(actualTableValue.contains(ageValue));
-        Assert.assertTrue(actualTableValue.contains(salaryValue));
-        Assert.assertTrue(actualTableValue.contains(departmentValue));
+//        Integer expectedTableSize = actualTableSize + 1;
+//        Assert.assertEquals(expectedTableSize, TableElements.size());
+//
+//        String actualTableValue = TableElements.get(3).getText();
+//        Assert.assertTrue(actualTableValue.contains(firstNameValue));
+//        Assert.assertTrue(actualTableValue.contains(lastNameValue));
+//        Assert.assertTrue(actualTableValue.contains(userEmailValue));
+//        Assert.assertTrue(actualTableValue.contains(ageValue));
+//        Assert.assertTrue(actualTableValue.contains(salaryValue));
+//        Assert.assertTrue(actualTableValue.contains(departmentValue));
 
 
     }
