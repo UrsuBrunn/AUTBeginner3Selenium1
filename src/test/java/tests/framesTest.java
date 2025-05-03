@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
 import HelperMethods.JavascriptHelpers;
+import SharedData.SharedData;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.framesPage;
 
-public class framesTest {
+public class framesTest extends SharedData {
 
-    public WebDriver driver;
     public elementsMethod elementsMethod;
     public framesMethod framesMethod;
     public HomePage homePage;
@@ -26,8 +26,6 @@ public class framesTest {
 
     @Test
     public void newFramesTest() {
-        //  Deschidem un browser de chrome
-        driver = new ChromeDriver();
 
         //  Facem browserul in modul maximize
         driver.manage().window().maximize();
@@ -38,12 +36,6 @@ public class framesTest {
         jsHelper = new JavascriptHelpers(driver);
         framesPage = new framesPage(driver);
 
-        //  Accesam o pagina web
-        driver.get("https://demoqa.com/");
-
-        // Definim un wait implicit pt un interval maxim de timp
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
         // Stating the Javascript Executor driver
         jsHelper.scrollDown(400);
@@ -52,10 +44,6 @@ public class framesTest {
         commonPage.goToDesiredSubMenu("Frames");
 
         framesPage.bigFrame();
-
-        WebElement sampleHeadingBigFrameElement = driver.findElement(By.xpath("//h1[@id='sampleHeading']"));
-        System.out.println("Textul din noul window este: " + sampleHeadingBigFrameElement.getText());
-        Assert.assertTrue(sampleHeadingBigFrameElement.getText().contains("This is a sample page"));
 
         driver.switchTo().defaultContent();
 

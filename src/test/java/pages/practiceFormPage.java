@@ -9,20 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class practiceFormPage {
-
-    WebDriver driver;
-    elementsMethod elementsMethods;
-    JavascriptHelpers javascriptHelpers;
-
-
-    public practiceFormPage(WebDriver driver) {
-        this.driver = driver;
-        this.elementsMethods = new elementsMethod(driver);
-        this.javascriptHelpers = new JavascriptHelpers(driver);
-        PageFactory.initElements(driver, this);
-
-    }
+public class practiceFormPage extends CommonPage {
 
     @FindBy(id = "firstName")
     WebElement firstNameElement;
@@ -72,6 +59,10 @@ public class practiceFormPage {
 
     @FindBy(id = "submit")
     WebElement submitActionElement;
+
+    public practiceFormPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void completefirstRegion(String firstName, String lastName, String userEmail, String mobileNumber) {
 

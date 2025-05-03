@@ -9,21 +9,7 @@ import HelperMethods.JavascriptHelpers;
 import HelperMethods.alertsMethod;
 import HelperMethods.elementsMethod;
 
-public class alerteFerestrePage {
-
-    WebDriver driver;
-    elementsMethod elementsMethods;
-    JavascriptHelpers javascriptHelpers;
-    alertsMethod alertsMethod;
-
-    public alerteFerestrePage(WebDriver driver) {
-
-        this.driver = driver;
-        this.elementsMethods = new elementsMethod(driver);
-        this.javascriptHelpers = new JavascriptHelpers(driver);
-        this.alertsMethod = new alertsMethod(driver);
-        PageFactory.initElements(driver, this);
-    }
+public class alerteFerestrePage extends CommonPage{
 
     @FindBy(id = "alertButton")
     WebElement alertOkElement;
@@ -43,7 +29,12 @@ public class alerteFerestrePage {
     @FindBy(id = "promptResult")
     WebElement promptResultElement;
 
+    public alerteFerestrePage(WebDriver driver) {
+        super(driver);
+    }
+
     public void showAlertOk() {
+//        javascriptHelpers.forceClick(alertOkElement);
         elementsMethods.clickElements(alertOkElement);
         alertsMethod.interactWithAlertOk();
     }

@@ -11,13 +11,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
+import SharedData.SharedData;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.webTablePage;
 
-public class webTableTests {
+public class webTableTests extends SharedData {
 
-    public WebDriver driver;
     public elementsMethod elementsMethod;
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
@@ -26,20 +26,13 @@ public class webTableTests {
 
     @Test
     public void autMethod() {
-//  Deschidem un browser de chrome
-        driver = new ChromeDriver();
 //  Facem browserul in modul maximize
-        driver.manage().window().maximize();
         homePage = new HomePage(driver);
         commonPage = new CommonPage(driver);
         jsHelper = new JavascriptHelpers(driver);
         webTablePage = new webTablePage(driver);
         elementsMethod = new elementsMethod(driver);
-
-//  Accesam o pagina web
-        driver.get("https://demoqa.com/");
-
-//  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
+        //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
 // Stating the Javascript Executor driver
         jsHelper.scrollDown(400);
 

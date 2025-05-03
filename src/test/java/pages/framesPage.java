@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import HelperMethods.JavascriptHelpers;
 import HelperMethods.elementsMethod;
@@ -8,18 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import HelperMethods.framesMethod;
 import org.testng.Assert;
 
-public class framesPage {
-    WebDriver driver;
-    elementsMethod elements;
-    JavascriptHelpers js;
-    framesMethod frames;
-
-    public framesPage(WebDriver driver) {
-        this.driver = driver;
-        this.elements = new elementsMethod(driver);
-        this.js = new JavascriptHelpers(driver);
-        this.frames = new framesMethod(driver);
-    }
+public class framesPage extends CommonPage{
 
     @FindBy(id = "frame1")
     WebElement bigFrameElement;
@@ -30,12 +20,23 @@ public class framesPage {
     @FindBy(id = "frame2")
     WebElement smallFrameElement;
 
+    public framesPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void bigFrame() {
-        frames.switchTo(bigFrameElement);
+//        frames.switchTo(bigFrameElement);
+        driver.switchTo().frame(bigFrameElement);
+        WebElement sampleHeadingBigFrameElement = driver.findElement(By.xpath("//h1[@id='sampleHeading']"));
+        System.out.println("Textul din noul window este: " + sampleHeadingBigFrameElement.getText());
+        Assert.assertTrue(sampleHeadingBigFrameElement.getText().contains("This is a sample page"));
     }
 
     public void smallFrame() {
-        frames.switchTo(smallFrameElement);
+        framesMethod.switchTo(smallFrameElement);
+        WebElement sampleHeadingBigFrameElement = driver.findElement(By.xpath("//h1[@id='sampleHeading']"));
+        System.out.println("Textul din noul window este: " + sampleHeadingBigFrameElement.getText());
+        Assert.assertTrue(sampleHeadingBigFrameElement.getText().contains("This is a sample page"));
     }
 
 }

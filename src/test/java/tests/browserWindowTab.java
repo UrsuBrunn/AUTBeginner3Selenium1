@@ -10,14 +10,14 @@ import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
 import HelperMethods.windowsMethods;
 import HelperMethods.JavascriptHelpers;
+import SharedData.SharedData;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.browserWindowPage;
 
 
-public class browserWindowTab {
+public class browserWindowTab extends SharedData {
 
-    public WebDriver driver;
     public elementsMethod elements;
     public framesMethod frames;
     public windowsMethods windows;
@@ -28,8 +28,6 @@ public class browserWindowTab {
 
     @Test
     public void newBrowserTest() {
-        //  Deschidem un browser de chrome
-        driver = new ChromeDriver();
 
         //  Facem browserul in modul maximize
         driver.manage().window().maximize();
@@ -41,12 +39,6 @@ public class browserWindowTab {
         browserWindowPage = new browserWindowPage(driver);
 
         jsHelper = new JavascriptHelpers(driver);
-
-        //  Accesam o pagina web
-        driver.get("https://demoqa.com/");
-
-        // Definim un wait implicit pt un interval maxim de timp
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
         // Stating the Javascript Executor driver
