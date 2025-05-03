@@ -23,9 +23,13 @@ public class HomePage {
     // Identificam WebElementele specifice pentru pagina aceasta
     @FindBy(xpath = "//h5")
     List<WebElement> elements;
+    //@findby(id = "//p[text()='Consent']")
+    //WebElement consentElement;
+    //
 
     // Facem metode specifice pentru pagina
     public void goToDesiredMenu(String menu) {
+    //elementMethods.click(consent);
         javascriptHelpers.scrollDown(400);
         elementsMethods.selectElementFromListByText(elements,menu);
 
