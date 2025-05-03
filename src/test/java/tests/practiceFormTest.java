@@ -2,19 +2,16 @@ package tests;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
+import SharedData.SharedData;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.practiceFormPage;
 
-public class practiceFormTest {
+public class practiceFormTest extends SharedData {
 
-    public WebDriver driver;
     public elementsMethod elementsMethod;
     public HomePage homePage;
     public JavascriptHelpers jsHelper;
@@ -24,19 +21,13 @@ public class practiceFormTest {
 
     @Test
     public void newFormTest() {
-        //  Deschidem un browser de chrome
-        driver = new ChromeDriver();
 
         //  Facem browserul in modul maximize
-        driver.manage().window().maximize();
         elementsMethod = new elementsMethod(driver);
         homePage = new HomePage(driver);
         jsHelper = new JavascriptHelpers(driver);
         commonPage = new CommonPage(driver);
         practiceFormPage = new practiceFormPage(driver);
-
-        //  Accesam o pagina web
-        driver.get("https://demoqa.com/");
 
         //  Initializam utilizarea de Java script si aplicam un java script pt scroll to bottom
         // Stating the Javascript Executor driver

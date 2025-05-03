@@ -9,22 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import HelperMethods.windowsMethods;
 import HelperMethods.framesMethod;
 
-public class browserWindowPage {
-
-    WebDriver driver;
-    elementsMethod elementsMethods;
-    JavascriptHelpers javascriptHelpers;
-    windowsMethods windowsMethods;
-    framesMethod framesMethod;
-
-    public browserWindowPage(WebDriver driver) {
-        this.driver = driver;
-        this.elementsMethods = new elementsMethod(driver);
-        this.javascriptHelpers = new JavascriptHelpers(driver);
-        this.windowsMethods = new windowsMethods(driver);
-        this.framesMethod = new framesMethod(driver);
-        PageFactory.initElements(driver, this);
-    }
+public class browserWindowPage extends CommonPage {
 
     @FindBy(id = "tabButton")
     WebElement newTabElement;
@@ -34,6 +19,10 @@ public class browserWindowPage {
     WebElement newWindowElement;
     @FindBy(id = "sampleHeading")
     WebElement sampleHeadingElement2;
+
+    public browserWindowPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void clickNewTab() {
         elementsMethods.clickElements(newTabElement);
