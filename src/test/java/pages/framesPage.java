@@ -2,11 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import HelperMethods.JavascriptHelpers;
-import HelperMethods.elementsMethod;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import HelperMethods.framesMethod;
 import org.testng.Assert;
 
 public class framesPage extends CommonPage{
