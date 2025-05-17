@@ -12,12 +12,12 @@ import HelperMethods.framesMethod;
 import HelperMethods.windowsMethods;
 
 public class CommonPage {
-    WebDriver driver;
-    elementsMethod elementsMethods;
-    JavascriptHelpers javascriptHelpers;
-    alertsMethod alertsMethod;
-    windowsMethods windowsMethods;
-    framesMethod framesMethod;
+    protected WebDriver driver;
+    protected elementsMethod elementsMethods;
+    protected JavascriptHelpers javascriptHelpers;
+    protected alertsMethod alertsMethod;
+    protected windowsMethods windowsMethods;
+    protected framesMethod framesMethod;
 
     public CommonPage(WebDriver driver) {
         this.driver = driver;
