@@ -4,7 +4,7 @@
     <test name="SmokeSuite" parallel="classes" thread-count="5">
         <classes>
             <class name="tests.alerteSiFerestre"/>
-            <class name="tests.framesTest"></class>
+            <class name="tests.framesTest"/>
         </classes>
     </test>
 </suite>
