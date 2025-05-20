@@ -29,4 +29,4 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Run Automation suite
-      run: mvn clean install -DsuiteXmlFile=suites/${{ github.event.inouts.suite }} -PCustomSuite
+      run: mvn clean install -DsuiteXmlFile=suites/${{ github.event.inputs.suite }} -PCustomSuite
