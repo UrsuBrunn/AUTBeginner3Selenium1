@@ -5,6 +5,7 @@
         <url>https://demoqa.com/</url>
         <headless>--headless</headless>
         <Resolution>window-size=1920,1080</Resolution>
+        <Gpu>--disablegpu</Gpu>
     </DriverConfig>
     <DatabaseConfig>
         <Port></Port>
