@@ -10,4 +10,7 @@ public class ConfigurationNode {
     @XmlElement(name = "DriverConfig")
     public DriverConfigNode driverConfigNode;
 
+    @XmlElement(name = "DatabaseConfig")
+    public DatabaseConfigNode databaseConfigNode;
+
 }
