@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import HelperMethods.JavascriptHelpers;
 import HelperMethods.elementsMethod;
+import ObjectData.PracticeFormObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -64,16 +65,16 @@ public class practiceFormPage extends CommonPage {
         super(driver);
     }
 
-    public void completefirstRegion(String firstName, String lastName, String userEmail, String mobileNumber) {
+    public void completefirstRegion(PracticeFormObject practiceFormObject) {
 
-        elementsMethods.sendKeys(firstNameElement, firstName);
-        elementsMethods.sendKeys(lastNameElement, lastName);
-        elementsMethods.sendKeys(userEmailElement, userEmail);
-        elementsMethods.sendKeys(mobileNumberElement, mobileNumber);
+        elementsMethods.sendKeys(firstNameElement, practiceFormObject.getFirstName());
+        elementsMethods.sendKeys(lastNameElement, practiceFormObject.getLastName());
+        elementsMethods.sendKeys(userEmailElement, practiceFormObject.getUserEmail());
+        elementsMethods.sendKeys(mobileNumberElement, practiceFormObject.getMobileNumber());
     }
 
-    public void selectGender(String gender) {
-        switch (gender) {
+    public void selectGender(PracticeFormObject practiceFormObject) {
+        switch (practiceFormObject.getGender()) {
             case "male":
                 genderMaleElement.click();
                 break;
@@ -100,9 +101,9 @@ public class practiceFormPage extends CommonPage {
 //    }
 
     //Lesson 11 solution for handle multiple elements fill in
-    public void enterSubjectsList(List<String> subjects) {
+    public void enterSubjectsList(PracticeFormObject practiceFormObject) {
         elementsMethods.clickElements(subjectsInputElement);
-        elementsMethods.fillMultipleValues(subjectsInputElement, subjects);
+        elementsMethods.fillMultipleValues(subjectsInputElement, practiceFormObject.getSubjects());
     }
 
     //Select only one hobby

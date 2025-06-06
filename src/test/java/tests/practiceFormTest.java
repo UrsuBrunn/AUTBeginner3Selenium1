@@ -5,6 +5,8 @@ import java.util.List;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
+import ObjectData.PracticeFormObject;
+import PropertyUtility.PropertyUtility;
 import SharedData.SharedData;
 import pages.HomePage;
 import pages.CommonPage;
@@ -22,6 +24,11 @@ public class practiceFormTest extends SharedData {
     @Test
     public void newFormTest() {
 
+
+        PropertyUtility propertyUtility = new PropertyUtility("practiceFormTest");
+        PracticeFormObject practiceFormObject = new PracticeFormObject(propertyUtility.getData());
+
+
         //  Facem browserul in modul maximize
         elementsMethod = new elementsMethod(driver);
         homePage = new HomePage(driver);
@@ -38,14 +45,14 @@ public class practiceFormTest extends SharedData {
         // Stating the Javascript Executor driver
         jsHelper.scrollDown(400);
 
-        practiceFormPage.completefirstRegion("Region1FirstName", "Region1LastName","Region1email@email.com","0740123456");
-        practiceFormPage.selectGender("female");
+        practiceFormPage.completefirstRegion(practiceFormObject);
+        practiceFormPage.selectGender(practiceFormObject);
 
-        List<String> subjectValues = new ArrayList<>();
-        subjectValues.add("Maths");
-        subjectValues.add("Social Studies");
+//        List<String> subjectValues = new ArrayList<>();
+//        subjectValues.add("Maths");
+//        subjectValues.add("Social Studies");
 
-        practiceFormPage.enterSubjectsList(subjectValues);
+        practiceFormPage.enterSubjectsList(practiceFormObject);
         // Different option with List directly in method use
 //        practiceFormPage.enterSubjectsList(List.of("Maths", "Social Studies"));
 
