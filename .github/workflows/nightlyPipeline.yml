@@ -5,7 +5,7 @@ name: Nightly Pipeline
 
 on:
   schedule:
-    - cron: '20 12 * * 1-5'
+    - cron: '52 09 * * 1-5'
   workflow_dispatch:
    inputs:
      suite:
