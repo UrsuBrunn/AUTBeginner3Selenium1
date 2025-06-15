@@ -122,8 +122,8 @@ public class practiceFormPage extends CommonPage {
     }
 
     // Select multiple hobbies
-    public void selectHobbies(List<String> hobbies) {
-        for (String hobby : hobbies) {
+    public void selectHobbies(PracticeFormObject practiceFormObject) {
+        for (String hobby : practiceFormObject.getHobbies()) {
             switch (hobby) {
                 case "Sports":
                     sportsBoxElement.click();
@@ -139,15 +139,15 @@ public class practiceFormPage extends CommonPage {
 
     }
 
-    public void selectState(String stateName) {
+    public void selectState(PracticeFormObject practiceFormObject) {
         javascriptHelpers.forceClick(stateInputElement);
-        elementsMethods.sendKeys(stateInputElement, stateName);
+        elementsMethods.sendKeys(stateInputElement, practiceFormObject.getState());
         stateInputElement.sendKeys(Keys.ENTER);
     }
 
-    public void selectCity(String cityName) {
+    public void selectCity(PracticeFormObject practiceFormObject) {
         javascriptHelpers.forceClick(cityInputElement);
-        elementsMethods.sendKeys(cityInputElement, cityName);
+        elementsMethods.sendKeys(cityInputElement, practiceFormObject.getCity());
         cityInputElement.sendKeys(Keys.ENTER);
     }
 

@@ -57,14 +57,12 @@ public class practiceFormTest extends SharedData {
 //        practiceFormPage.enterSubjectsList(List.of("Maths", "Social Studies"));
 
         //Select one hobby
-        practiceFormPage.selectHobby("Sports");
-
         //Select multiple hobbbies
-        practiceFormPage.selectHobbies(List.of("Music","Reading"));
+        practiceFormPage.selectHobbies(practiceFormObject);
 
-        practiceFormPage.selectState("NCR");
+        practiceFormPage.selectState(practiceFormObject);
 
-        practiceFormPage.selectCity("Delhi");
+        practiceFormPage.selectCity(practiceFormObject);
 
         practiceFormPage.uploadPicture();
 

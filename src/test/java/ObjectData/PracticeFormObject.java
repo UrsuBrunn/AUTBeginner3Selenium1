@@ -12,6 +12,10 @@ public class PracticeFormObject extends CommonObject{
     private String mobileNumber;
     private String gender;
     private List<String> subjects;
+    private List<String> hobbies;
+    private String state;
+    private String city;
+
 
 
     public PracticeFormObject(HashMap <String, String> testData) {
@@ -40,6 +44,15 @@ public class PracticeFormObject extends CommonObject{
                 case "subjects":
                     setSubjects(getValueList(testData.get(key)));
                     break;
+                case "hobbies":
+                    setHobbies(getValueList(testData.get(key)));
+                    break;
+                case "state":
+                    setState(testData.get(key));
+                    break;
+                case "city":
+                    setCity(testData.get(key));
+                    break;
             }
         }
     }
@@ -50,6 +63,30 @@ public class PracticeFormObject extends CommonObject{
 
     public void setSubjects(List<String> subjects) {
         this.subjects = subjects;
+    }
+
+    public List<String> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(List<String> hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getGender() {
@@ -91,4 +128,5 @@ public class PracticeFormObject extends CommonObject{
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
+
 }
