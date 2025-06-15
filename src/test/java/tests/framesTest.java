@@ -1,21 +1,15 @@
 package tests;
 
-import java.time.Duration;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
 import HelperMethods.JavascriptHelpers;
-import SharedData.SharedData;
+import SharedData.Hooks;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.framesPage;
 
-public class framesTest extends SharedData {
+public class framesTest extends Hooks {
 
     public elementsMethod elementsMethod;
     public framesMethod framesMethod;

@@ -8,19 +8,22 @@ import org.testng.annotations.BeforeMethod;
 import SharedData.browser.BrowserFactory;
 import configFile.ConfigFile;
 import configFile.configNode.ConfigurationNode;
+import logger.LoggerUtility;
 
 public class SharedData {
 
     public WebDriver driver;
 
-    @BeforeMethod
     public void prepareBrowser() {
+
         driver = new BrowserFactory().getBrowserFactory();
+        LoggerUtility.infoLog("Browser opened with success");
     }
 
-    @AfterMethod
     public void clearBrowser() {
+
         driver.quit();
+        LoggerUtility.infoLog("Browser closed with success");
     }
 
 }

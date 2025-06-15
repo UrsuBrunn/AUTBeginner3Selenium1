@@ -10,6 +10,7 @@ import HelperMethods.alertsMethod;
 import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
 import HelperMethods.windowsMethods;
+import logger.LoggerUtility;
 
 public class CommonPage {
     protected WebDriver driver;
@@ -36,7 +37,9 @@ public class CommonPage {
     // Facem metode specifice pentru pagina
     public void goToDesiredSubMenu(String submenu) {
         javascriptHelpers.scrollDown(400);
+        LoggerUtility.infoLog("The page is scrolled down the page ");
         elementsMethods.selectElementFromListByText(elements,submenu);
+        LoggerUtility.infoLog("Selected option from the SubMenu is: " + submenu);
 
     }
 

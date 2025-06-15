@@ -1,22 +1,14 @@
 package tests;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
-import SharedData.SharedData;
+import SharedData.Hooks;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.webTablePage;
 
-public class webTableTests extends SharedData {
+public class webTableTests extends Hooks {
 
     public elementsMethod elementsMethod;
     public HomePage homePage;
@@ -45,7 +37,7 @@ public class webTableTests extends SharedData {
         webTablePage.addInputsToTable("FirsNameInput1","LastNameInput1","userEmailInput1@example.com","33","10000","Deprtement1");
         webTablePage.clickSubmitAction();
 
-
+//        TBC:
 //        Integer expectedTableSize = actualTableSize + 1;
 //        Assert.assertEquals(expectedTableSize, TableElements.size());
 //

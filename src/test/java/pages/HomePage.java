@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
+import logger.LoggerUtility;
 
 public class HomePage extends CommonPage {
 
@@ -25,7 +26,9 @@ public class HomePage extends CommonPage {
     public void goToDesiredMenu(String menu) {
     //elementMethods.click(consent);
         javascriptHelpers.scrollDown(400);
+        LoggerUtility.infoLog("The page is scrolled down the page ");
         elementsMethods.selectElementFromListByText(elements,menu);
+        LoggerUtility.infoLog("Selected option from the Menu is: " + menu);
 
     }
 

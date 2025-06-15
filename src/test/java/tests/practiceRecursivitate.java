@@ -1,15 +1,13 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import HelperMethods.JavascriptHelpers;
-import SharedData.SharedData;
+import SharedData.Hooks;
 import pages.HomePage;
 import pages.CommonPage;
 import HelperMethods.sortingMethod;
 
-public class practiceRecursivitate extends SharedData {
+public class practiceRecursivitate extends Hooks {
 
     public HomePage homePage;
     public JavascriptHelpers jsHelper;

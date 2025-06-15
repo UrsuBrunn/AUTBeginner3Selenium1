@@ -1,19 +1,15 @@
 package tests;
 
-import java.time.Duration;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
 import HelperMethods.alertsMethod;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
-import SharedData.SharedData;
+import SharedData.Hooks;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.alerteFerestrePage;
 
-public class alerteSiFerestre extends SharedData {
+public class alerteSiFerestre extends Hooks {
 
     public elementsMethod elementsMethod;
     public alertsMethod alertsMethod;
@@ -24,6 +20,7 @@ public class alerteSiFerestre extends SharedData {
 
     @Test
     public void newAlertTest() {
+
         homePage = new HomePage(driver);
         commonPage = new CommonPage(driver);
         jsHelper = new JavascriptHelpers(driver);
