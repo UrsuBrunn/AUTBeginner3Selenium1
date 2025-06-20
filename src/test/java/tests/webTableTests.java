@@ -4,6 +4,8 @@ import org.testng.annotations.Test;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
 import SharedData.Hooks;
+import extentUtility.ExtentUtility;
+import extentUtility.ReportStep;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.webTablePage;
@@ -31,24 +33,15 @@ public class webTableTests extends Hooks {
 //  declaram lista elemente si alegem Elements
 
         homePage.goToDesiredMenu("Elements");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user selects the Elements menu : ");
         commonPage.goToDesiredSubMenu("Web Tables");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user selects the Web tables submenu : ");
         jsHelper.scrollDown(400);
 
         webTablePage.addInputsToTable("FirsNameInput1","LastNameInput1","userEmailInput1@example.com","33","10000","Deprtement1");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user fills in data for displayed fields in the table : ");
         webTablePage.clickSubmitAction();
-
-//        TBC:
-//        Integer expectedTableSize = actualTableSize + 1;
-//        Assert.assertEquals(expectedTableSize, TableElements.size());
-//
-//        String actualTableValue = TableElements.get(3).getText();
-//        Assert.assertTrue(actualTableValue.contains(firstNameValue));
-//        Assert.assertTrue(actualTableValue.contains(lastNameValue));
-//        Assert.assertTrue(actualTableValue.contains(userEmailValue));
-//        Assert.assertTrue(actualTableValue.contains(ageValue));
-//        Assert.assertTrue(actualTableValue.contains(salaryValue));
-//        Assert.assertTrue(actualTableValue.contains(departmentValue));
-
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user selects SubmitToAction button: ");
 
     }
 

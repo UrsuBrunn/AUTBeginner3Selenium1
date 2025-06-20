@@ -8,6 +8,8 @@ import HelperMethods.framesMethod;
 import HelperMethods.windowsMethods;
 import HelperMethods.JavascriptHelpers;
 import SharedData.Hooks;
+import extentUtility.ExtentUtility;
+import extentUtility.ReportStep;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.browserWindowPage;
@@ -44,17 +46,23 @@ public class browserWindowTab extends Hooks {
         jsHelper.scrollDown(400);
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user enters on Alerts, Frames & Windows menu: ");
         commonPage.goToDesiredSubMenu("Browser Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user selects Browser Windows sub-menu: ");
 
         browserWindowPage.clickNewTab();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user selects the new tab window: ");
 
         windows.switchToMainTab();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user changes focus back to Main tab ");
 
         browserWindowPage.clickWindowedTab();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user moves focus to windowed tab: ");
 
         WebElement sampleHeadingElement2 = driver.findElement(By.id("sampleHeading"));
         System.out.println("Textul din noul window este: " + sampleHeadingElement2.getText());
 
         windows.switchToMainTab();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user changes focus back to Main tab ");
     }
 }

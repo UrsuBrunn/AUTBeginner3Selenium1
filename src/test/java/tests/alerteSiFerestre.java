@@ -5,6 +5,8 @@ import HelperMethods.alertsMethod;
 import HelperMethods.elementsMethod;
 import HelperMethods.JavascriptHelpers;
 import SharedData.Hooks;
+import extentUtility.ExtentUtility;
+import extentUtility.ReportStep;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.alerteFerestrePage;
@@ -35,11 +37,17 @@ public class alerteSiFerestre extends Hooks {
         jsHelper.scrollDown(400);
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user enters on Alerts, Frames & Windows menu: ");
         commonPage.goToDesiredSubMenu("Alerts");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user selects Alerts sub-menu: ");
 
         alerteFerestrePage.showAlertOk();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user interacts with OK button for 1'st alert ");
         alerteFerestrePage.showAlertDelayed();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user interacts with delyed display of 2'nd alert ");
         alerteFerestrePage.alertMessageDismiss();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user interects by dismissing the alert");
         alerteFerestrePage.alertPrompt();
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user interects by clicking on the alert Prompt: ");
     }
 }

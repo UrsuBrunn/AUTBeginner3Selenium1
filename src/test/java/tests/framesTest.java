@@ -5,6 +5,8 @@ import HelperMethods.elementsMethod;
 import HelperMethods.framesMethod;
 import HelperMethods.JavascriptHelpers;
 import SharedData.Hooks;
+import extentUtility.ExtentUtility;
+import extentUtility.ReportStep;
 import pages.HomePage;
 import pages.CommonPage;
 import pages.framesPage;
@@ -35,14 +37,15 @@ public class framesTest extends Hooks {
         jsHelper.scrollDown(400);
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user enters on Alerts, Frames & Windows menu: ");
         commonPage.goToDesiredSubMenu("Frames");
-
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user enters on Frames sub-menu: ");
         framesPage.bigFrame();
-
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user interacts with the first iFrame ");
         driver.switchTo().defaultContent();
-
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user switches focus to default content ");
         framesPage.smallFrame();
-
+        ExtentUtility.attachLog(ReportStep.PASS_STEP, " The user interacts with small frame ");
 
 
 //        WebElement bigFrameElement = driver.findElement(By.id("frame1"));

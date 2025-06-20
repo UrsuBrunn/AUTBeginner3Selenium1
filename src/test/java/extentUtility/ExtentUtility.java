@@ -67,12 +67,12 @@ public class ExtentUtility {
         try {
             String path = pathToProject + reportName + ".png";
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(src,new File(path));
+            FileUtils.copyFile(src, new File(path));
             byte[] imageBytes = IOUtils.toByteArray(Files.newInputStream(Paths.get(path)));
             return Base64.getEncoder().encodeToString(imageBytes);
         }
         catch (IOException exception){
-            System.out.println(" The screenshot path isincorrect");
+            System.out.println(" The screenshot path is incorrect");
         }
         return null;
     }
